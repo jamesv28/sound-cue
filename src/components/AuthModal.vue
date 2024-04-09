@@ -79,8 +79,9 @@ export default {
           <form v-if="tab == 'login'">
             <!-- Email -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Email</label>
+              <label class="inline-block mb-2" for="lEmail">Email</label>
               <input
+                id="lEmail"
                 type="email"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Email"
@@ -88,8 +89,9 @@ export default {
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Password</label>
+              <label class="inline-block mb-2" for="lPassword">Password</label>
               <input
+                id="lPassword"
                 type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password"
@@ -106,8 +108,9 @@ export default {
           <form v-else>
             <!-- Name -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Name</label>
+              <label class="inline-block mb-2" for="name">Name</label>
               <input
+                id="name"
                 type="text"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Name"
@@ -115,8 +118,9 @@ export default {
             </div>
             <!-- Email -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Email</label>
+              <label class="inline-block mb-2" for="rEmail">Email</label>
               <input
+                id="rEmail"
                 type="email"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Email"
@@ -124,16 +128,18 @@ export default {
             </div>
             <!-- Age -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Age</label>
+              <label class="inline-block mb-2" for="age">Age</label>
               <input
+                id="age"
                 type="number"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
               />
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Password</label>
+              <label class="inline-block mb-2" for="rPassword">Password</label>
               <input
+                id="rPassword"
                 type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password"
@@ -141,8 +147,9 @@ export default {
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Confirm Password</label>
+              <label class="inline-block mb-2" for="crPassword">Confirm Password</label>
               <input
+                id="crPassword"
                 type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Confirm Password"
@@ -150,8 +157,9 @@ export default {
             </div>
             <!-- Country -->
             <div class="mb-3">
-              <label class="inline-block mb-2">Country</label>
+              <label class="inline-block mb-2" for="country">Country</label>
               <select
+                id="country"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
               >
                 <option value="USA">USA</option>
@@ -161,8 +169,8 @@ export default {
             </div>
             <!-- TOS -->
             <div class="mb-3 pl-6">
-              <input type="checkbox" class="w-4 h-4 float-left -ml-6 mt-1 rounded" />
-              <label class="inline-block">Accept terms of service</label>
+              <input type="checkbox" class="w-4 h-4 float-left -ml-6 mt-1 rounded" id="accept" />
+              <label class="inline-block" for="accept">Accept terms of service</label>
             </div>
             <button
               type="submit"
