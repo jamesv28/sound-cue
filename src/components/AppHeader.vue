@@ -6,9 +6,7 @@ export default {
   name: 'AppHeader',
   methods: {
     toggleAuthModal() {
-      console.log('hello')
       this.modalStore.isOpen = !this.modalStore.isOpen
-      console.log(this.modalStore.isOpen)
     }
   },
   computed: {

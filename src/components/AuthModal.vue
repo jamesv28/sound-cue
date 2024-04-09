@@ -1,11 +1,19 @@
 <script>
-import { mapState } from 'pinia'
+import { mapState, mapWritableState } from 'pinia'
 import { useModalStore } from '@/stores/modals'
 
 export default {
   name: 'AuthModal',
+  data() {
+    return {
+      tab: 'login'
+    }
+  },
   computed: {
-    ...mapState(useModalStore, ['hiddenClass'])
+    ...mapState(useModalStore, ['hiddenClass']),
+    ...mapWritableState(useModalStore, {
+      modalVisibility: 'isOpen'
+    })
   }
 }
 </script>
@@ -32,7 +40,7 @@ export default {
           <div class="flex justify-between items-center pb-4">
             <p class="text-2xl font-bold">Your Account</p>
             <!-- Modal Close Button -->
-            <div class="modal-close cursor-pointer z-50">
+            <div class="modal-close cursor-pointer z-50" @click="modalVisibility = false">
               <i class="fas fa-times"></i>
             </div>
           </div>
@@ -41,18 +49,34 @@ export default {
           <ul class="flex flex-wrap mb-4">
             <li class="flex-auto text-center">
               <a
-                class="block rounded py-3 px-4 transition hover:text-white text-white bg-blue-600"
+                class="block rounded py-3 px-4 transition"
+                :class="
+                  tab === 'login'
+                    ? 'hover:text-white text-white bg-blue-600'
+                    : 'hover:text-blue-600'
+                "
                 href="#"
+                @click.prevent="tab = 'login'"
                 >Login</a
               >
             </li>
             <li class="flex-auto text-center">
-              <a class="block rounded py-3 px-4 transition" href="#">Register</a>
+              <a
+                class="block rounded py-3 px-4 transition"
+                :class="
+                  tab === 'register'
+                    ? 'hover:text-white text-white bg-blue-600'
+                    : 'hover:text-blue-600'
+                "
+                href="#"
+                @click.prevent="tab = 'register'"
+                >Register</a
+              >
             </li>
           </ul>
 
           <!-- Login Form -->
-          <form>
+          <form v-if="tab == 'login'">
             <!-- Email -->
             <div class="mb-3">
               <label class="inline-block mb-2">Email</label>
@@ -79,7 +103,7 @@ export default {
             </button>
           </form>
           <!-- Registration Form -->
-          <form>
+          <form v-else>
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
