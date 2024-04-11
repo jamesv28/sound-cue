@@ -16,6 +16,9 @@ export default {
         confirmPassword: 'required|confirmed:@password',
         country: 'required',
         tos: 'required'
+      },
+      userData: {
+        country: 'USA'
       }
     }
   },
@@ -120,7 +123,12 @@ export default {
             </button>
           </form>
           <!-- Registration Form -->
-          <vee-form v-else :validation-schema="schema" @submit="register">
+          <vee-form
+            v-else
+            :validation-schema="schema"
+            @submit="register"
+            :initial-values="userData"
+          >
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2" for="name">Name</label>
