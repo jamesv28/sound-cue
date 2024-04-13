@@ -1,7 +1,6 @@
 <script>
 import { mapState, mapWritableState } from 'pinia'
 import { useModalStore } from '@/stores/modals'
-import { errorMessages } from 'vue/compiler-sfc'
 
 export default {
   name: 'AuthModal',
@@ -13,18 +12,30 @@ export default {
         email: 'required|email|min:3|max:100',
         age: 'required|min_value:18|max_value:100',
         password: 'required|min:3|max:100|excluded:password',
-        confirmPassword: 'required|confirmed:@password',
+        confirmPassword: 'required|passwords_mismatch:@password',
         country: 'required',
         tos: 'required'
       },
       userData: {
         country: 'USA'
-      }
+      },
+      registrationInSubmission: false,
+      regShowAlert: false,
+      reg_variant_blue: 'bg-blue-500',
+      reg_message: 'Please wait, your account is being created'
     }
   },
   methods: {
     register(values) {
-      console.log(values)
+      this.registrationInSubmission = true
+      this.regShowAlert = true
+      this.reg_variant_blue = 'bg-blue-500'
+      this.reg_message = 'Please waith, your account is being created'
+
+      this.reg_variant_blue = 'bg-green-500'
+      this.reg_message = 'Success! Your acount has been created'
+
+      console.log('values', values)
     }
   },
   computed: {
@@ -123,12 +134,20 @@ export default {
             </button>
           </form>
           <!-- Registration Form -->
+
           <vee-form
             v-else
             :validation-schema="schema"
             @submit="register"
             :initial-values="userData"
           >
+            <div
+              class="text-white text-center font-bold p04 rounded mb-4"
+              v-if="regShowAlert"
+              :class="reg_variant_blue"
+            >
+              {{ reg_message }}
+            </div>
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2" for="name">Name</label>
@@ -220,6 +239,7 @@ export default {
             <button
               type="submit"
               class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+              :disabled="registrationInSubmission"
             >
               Submit
             </button>
